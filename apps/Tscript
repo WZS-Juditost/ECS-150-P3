@@ -1,0 +1,24 @@
+#! /bin/bash
+
+i=0;
+for arg in "$@" 
+do
+    i=$((i + 1));
+done
+
+#echo $i
+
+if (($i == 3))
+then
+    ./fs_ref.x $1 $2 $3 > ref_output
+    ./test_fs.x $1 $2 $3 > my_output
+    diff ref_output my_output
+    #echo $1 $2 $3
+fi
+
+if (($i == 2))
+then
+    ./fs_ref.x $1 $2 > ref_output
+    ./test_fs.x $1 $2 > my_output
+    diff ref_output my_output
+fi
